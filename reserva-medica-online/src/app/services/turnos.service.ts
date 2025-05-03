@@ -10,7 +10,7 @@ import { Profesional } from '../interfaces/profesional';
   providedIn: 'root'
 })
 export class TurnosService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1'; // URL base de la API
+  private apiUrl = 'https://reservasmedicas.ddns.net/lista_turnos_usuario/'; // URL base de la API
   private apiUrl1 = 'http://127.0.0.1:8000/api/v1/especialidad/';
   private apiUrl2 = 'http://127.0.0.1:8000/api/v1/profesionales/';
   // turno={
