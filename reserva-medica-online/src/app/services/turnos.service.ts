@@ -10,9 +10,9 @@ import { Profesional } from '../interfaces/profesional';
   providedIn: 'root'
 })
 export class TurnosService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1'; // URL base de la API
-  private apiUrl1 = 'http://127.0.0.1:8000/api/v1/especialidad/';
-  private apiUrl2 = 'http://127.0.0.1:8000/api/v1/profesionales/';
+  private apiUrl = 'https://reservasmedicas.ddns.net/lista_turnos_usuario/'; // URL base de la API
+  private apiUrl1 = 'https://reservasmedicas.ddns.net/api/v1/';
+ // private apiUrl2 = 'https://reservasmedicas.ddns.net/api/v1/';
   // turno={
   //   id:0,
   //   especialidad:"",
@@ -40,16 +40,16 @@ export class TurnosService {
   constructor(private http: HttpClient) { }
 
   obtenerEspecialidades(): Observable<any[]> {
-    return this.http.get<Especialidad[]>(`${this.apiUrl}/especialidad/`);
+    return this.http.get<Especialidad[]>(`${this.apiUrl1}especialidad/`);
   }
 
   obtenerProfesionales(): Observable<any[]> {
-    return this.http.get<Profesional[]>(`${this.apiUrl}/profesionales/`);
+    return this.http.get<Profesional[]>(`${this.apiUrl1}profesionales/`);
   }
 //traer profesionales segun especialidad seleccionada
   getProfesionalesPorEspecialidad(especialidadId: number): Observable<any[]> {
     // const url = `${this.apiUrl}/profesionales/?especialidad=${especialidadId}`;
     // return this.http.get<any[]>(url);
-    return this.http.get<any[]>(`${this.apiUrl2}?especialidad=${especialidadId}`);
+    return this.http.get<any[]>(`${this.apiUrl1}?especialidad=${especialidadId}`);
   }
 }
