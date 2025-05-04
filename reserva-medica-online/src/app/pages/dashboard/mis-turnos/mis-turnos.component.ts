@@ -20,13 +20,16 @@ export class MisTurnosComponent implements OnInit {
   
     ngOnInit(): void {
       let username = localStorage.getItem('dni');
-      if (username) {
-        this.apiService.lista_turnos_usuario(username).subscribe(
+      let id_cliente = localStorage.getItem('id_user_id');
+      console.log('ID de usuario obtenido del localStorage:', id_cliente);
+      if (id_cliente) {
+        this.apiService.lista_turnos_usuario(id_cliente).subscribe(
           (data: Turno[]) => {
             this.turnos = data;
             console.log('Turnos del usuario:', this.turnos);
           },
           error => {
+            console.log('ID de usuario obtenido del localStorage:', id_cliente);
             console.error('Error al obtener los turnos del usuario', error);
           }
         );

@@ -129,7 +129,7 @@ export class ApiService {
           'Content-Type': 'application/json',
           'Authorization': `Token ${token_cliente}`
         });
-        return this.http.get<any>(`${this.apiUrl}/lista_turnos_usuario/${id_cliente}/`, { headers });
+        return this.http.get<any>(`${this.apiUrl}lista_turnos_usuario/94/`, { headers });
       } else {
         console.error('Token no encontrado en localStorage');
         return new Observable(); // Retornar observable vacío en caso de error
