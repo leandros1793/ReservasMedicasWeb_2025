@@ -24,7 +24,7 @@ div.row {
     padding: 20px; /* Espaciado interno */
     background-color: white; /* Fondo blanco */
     border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
     text-align: center; /* Centra el texto */
 }
 
@@ -40,7 +40,7 @@ input {
     border-radius: 5px;
     padding: 10px;
     width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
 }
 
@@ -56,4 +56,13 @@ input {
 }
 .btn_login:hover{
     background-color: #0056b3;
+}
+
+.btn-login2{
+    text-decoration: none;
+}
+
+
+.IngreseSuInfo {
+    font-size: 1.18rem;
 }
