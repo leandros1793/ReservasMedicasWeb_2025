@@ -57,15 +57,19 @@
   <form class="container" [formGroup]="turnoForm" (ngSubmit)="onSubmit()">
     <div class="row m-4">
       <div class="col-6">
-        <select formControlName="especialidad" id="especialidad" class="form-select" aria-label="Default select example" (change)="onChangeEspecialidad($event)">
+        <select formControlName="especialidad" id="especialidad" class="form-select" (change)="onChangeEspecialidad($event)">
           <option value="">Selecciona una especialidad</option>
-          <option [value]="especialidad.especialidad" *ngFor="let especialidad of especialidadesList">{{especialidad.especialidad}}</option>
+          <option *ngFor="let especialidad of especialidadesList" [value]="especialidad.id">
+            {{ especialidad.especialidad }}
+          </option>
         </select>
       </div>
       <div class="col-6">
-        <select formControlName="profesional" id="profesional" class="form-select" aria-label="Default select example">
+        <select formControlName="profesional" id="profesional" class="form-select">
           <option value="">Selecciona un profesional</option>
-          <option [value]="profesional.apellido + ' ' + profesional.nombre" *ngFor="let profesional of profesionalesList">{{profesional.nombre + ' ' + profesional.apellido}}</option>
+          <option *ngFor="let profesional of profesionalesList" [value]="profesional.id">
+            {{ profesional.nombre }} {{ profesional.apellido }}
+          </option>
         </select>
       </div>
     </div>
