@@ -1,0 +1,22 @@
+<main class="carrito-container">
+  <section id="carrito">
+    <h2>Carrito de Turnos</h2>
+
+    <div *ngIf="turnos && turnos.length > 0; else emptyCart">
+      <ul class="carrito-lista">
+        <li *ngFor="let turno of turnos; let i = index" class="carrito-item">
+          <p><strong>Especialidad:</strong> {{ turno.especialidad }}</p>
+          <p><strong>Profesional:</strong> {{ turno.profesional }}</p>
+          <p><strong>Fecha:</strong> {{ turno.fecha }}</p>
+          <button class="botones_turnos" (click)="eliminarTurno(i)">Eliminar</button>
+        </li>
+      </ul>
+      <button class="botones_turnos" (click)="limpiarCarrito()">Vaciar carrito</button>
+    </div>
+
+    <ng-template #emptyCart>
+      <p class="carrito-vacio">El carrito está vacío.</p>
+      <button class="botones_turnos" (click)="irATurnos()">Agregar nuevo turno</button>
+    </ng-template>
+  </section>
+</main>
