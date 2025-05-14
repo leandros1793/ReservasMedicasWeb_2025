@@ -51,8 +51,12 @@ onSubmit(): void {
 
     console.log({ id_user_id, paciente_id, profesional_id, fecha_turno, hora_turno, especialidad_id });
 
+    console.log('Form values:', this.turnoForm.value);
 
-    if (id_user_id && paciente_id && profesional_id && fecha_turno && hora_turno && especialidad_id) {
+
+    if (id_user_id !== null && id_user_id !== undefined &&
+        paciente_id !== null && paciente_id !== undefined &&
+        profesional_id && fecha_turno && hora_turno && especialidad_id) {
       const turnoData = {
         id_user_id: id_user_id,
         paciente_id: paciente_id,
@@ -93,7 +97,8 @@ onSubmit(): void {
     const especialidadId = event.target.value;
     if (especialidadId) {
       this.turnosService.getProfesionalesPorEspecialidad(especialidadId).subscribe((data: any) => {
-        this.profesionalesList = data;
+        console.log('Respuesta del backend:', data);
+        this.profesionalesList = data || [];
       });
     } else {
       this.profesionalesList = []; 

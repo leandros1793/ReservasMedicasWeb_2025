@@ -48,8 +48,8 @@ export class TurnosService {
   }
 //traer profesionales segun especialidad seleccionada
   getProfesionalesPorEspecialidad(especialidadId: number): Observable<any[]> {
-    // const url = `${this.apiUrl}/profesionales/?especialidad=${especialidadId}`;
-    // return this.http.get<any[]>(url);
-    return this.http.get<any[]>(`${this.apiUrl1}?especialidad=${especialidadId}`);
+    const url = `https://reservasmedicas.ddns.net/api/v1/profesionales/?especialidad=${especialidadId}`;
+    return this.http.get<any[]>(url);
   }
+  
 }

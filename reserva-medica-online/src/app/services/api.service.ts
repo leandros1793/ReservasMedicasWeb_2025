@@ -97,24 +97,32 @@ export class ApiService {
     }
 
     
-    nuevo_turno(turnoData: { id_user_id: number; paciente_id: number; profesional_id: any; hora_turno: any; fecha_turno: any; especialidad_id: any; }): Observable<any> {
-      const id_cliente = localStorage.getItem('id_user_id');
+    // api.service.ts
+    nuevo_turno(turnoData: {
+      id_user_id: number;
+      paciente_id: number;
+      profesional_id: any;
+      hora_turno: any;
+      fecha_turno: any;
+      especialidad_id: any;
+    }): Observable<any> {
       const token_cliente = localStorage.getItem('token');
-      const body = JSON.stringify(turnoData); // Usar los datos recibidos, no localStorage
+      const id_cliente = localStorage.getItem('id_user_id');
 
-      if (token_cliente) {
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${token_cliente}`,
-          'id_user_id': `${id_cliente}`
-        });
-
-        return this.http.post<any>(`${this.apiUrl}nuevo_turno/`, body, { headers });
-      } else {
+      if (!token_cliente) {
         console.error('Token no encontrado en localStorage');
-        return throwError(() => new Error('Token no encontrado en localStorage'));
+        return throwError(() => new Error('Token no encontrado'));
       }
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token_cliente}`,
+        'id_user_id': `${id_cliente}`
+      });
+
+      return this.http.post<any>(`${this.apiUrl}nuevo_turno/`, turnoData, { headers });
     }
+
 
 
     
