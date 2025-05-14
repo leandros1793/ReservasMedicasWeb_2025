@@ -1,41 +1,93 @@
-<form [formGroup]="contactoForm" class="form-container">
-  <h2 class="mb-4">¡ENVIÁ TU CONSULTA!</h2>
-  <div class="mb-3">
-    <label for="nombre" class="form-label">Tu Nombre:</label>
-    <input type="text" class="form-control" id="nombre" formControlName="nombre">
-    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="text-danger">
-      <div *ngIf="nombre.errors?.['required']">
-        El Nombre es requerido.
-      </div>
-      <div *ngIf="nombre.errors?.['invalidName']">
-        Debe tener al menos 3 caracteres y no debe contener números.
-      </div>
-    </div>
-  </div>
+<h2 class="mb-4 text-center">¡BIENVENIDO A CONTACTO... ENVIÁ TU CONSULTA!</h2>
+<form [formGroup]="contactoForm" (ngSubmit)="enviar()" class="form-container">
+  <div id="contacto" class="row align-items-center singin-container">
 
-  <div class="mb-3">
-    <label for="email" class="form-label">Tu Correo Electrónico:</label>
-    <input type="email" class="form-control" id="email" formControlName="email">
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
-      <div *ngIf="email.errors?.['required']">
-        El Email es requerido.
-      </div>
-      <div *ngIf="email.errors?.['invalidEmail']">
-        Introducir una dirección de correo electrónico válida con el formato aaa&#64;aa.com
+    <!-- Nombre -->
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre">
+      <div *ngIf="contactoForm.get('nombre')!.invalid && (contactoForm.get('nombre')!.dirty || contactoForm.get('nombre')!.touched)" class="text-danger">
+        <div *ngIf="contactoForm.get('nombre')!.errors?.['required']">
+          El nombre es requerido.
+        </div>
+        <div *ngIf="contactoForm.get('nombre')!.errors?.['invalidName']">
+          Debe tener al menos 2 caracteres y no debe contener números.
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="mb-3">
-    <label for="mensaje" class="form-label">Mensaje:</label>
-    <textarea class="form-control" id="mensaje" formControlName="mensaje" rows="8"></textarea>
-    <div *ngIf="mensaje.invalid && (mensaje.dirty || mensaje.touched)" class="text-danger">
-      <div *ngIf="mensaje.errors?.['required']">
-        El Mensaje es obligatorio.
+    <!-- Apellido -->
+    <div class="mb-3">
+      <label for="apellido" class="form-label">Apellido:</label>
+      <input type="text" class="form-control" id="apellido" formControlName="apellido">
+      <div *ngIf="contactoForm.get('apellido')!.invalid && (contactoForm.get('apellido')!.dirty || contactoForm.get('apellido')!.touched)" class="text-danger">
+        <div *ngIf="contactoForm.get('apellido')!.errors?.['required']">
+          El Apellido es requerido.
+        </div>
+        <div *ngIf="contactoForm.get('apellido')!.errors?.['invalidName']">
+          Debe tener al menos 2 caracteres y no debe contener números.
+        </div>
       </div>
     </div>
+
+    <!-- Correo Electrónico -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Tu Correo Electrónico:</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div *ngIf="contactoForm.get('email')!.invalid && (contactoForm.get('email')!.dirty || contactoForm.get('email')!.touched)" class="text-danger">
+        <div *ngIf="contactoForm.get('email')!.errors?.['required']">
+          El Email es requerido.
+        </div>
+        <div *ngIf="contactoForm.get('email')!.errors?.['invalidEmail']">
+          Introducir una dirección de correo electrónico válida con el formato ejemplo&#64;dominio.com.
+        </div>
+      </div>
+    </div>
+
+    <!-- Tipo de Consulta -->
+    <div class="mb-3">
+      <label for="tipoConsulta" class="form-label">Tipo de Consulta:</label>
+      <select class="form-control" id="tipoConsulta" formControlName="tipoConsulta">
+        <option value="" disabled selected>Seleccione una opción</option>
+        <option value="sugerencia">Sugerencia</option>
+        <option value="reclamo">Reclamo</option>
+      </select>
+      <div *ngIf="contactoForm.get('tipoConsulta')!.invalid && (contactoForm.get('tipoConsulta')!.dirty || contactoForm.get('tipoConsulta')!.touched)" class="text-danger">
+        <div *ngIf="contactoForm.get('tipoConsulta')!.errors?.['required']">
+          El tipo de consulta es requerido.
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensaje -->
+    <div class="mb-3">
+      <label for="mensaje" class="form-label">Mensaje:</label>
+      <textarea class="form-control" id="mensaje" formControlName="mensaje" rows="8"></textarea>
+      <div *ngIf="contactoForm.get('mensaje')!.invalid && (contactoForm.get('mensaje')!.dirty || contactoForm.get('mensaje')!.touched)" class="text-danger">
+        <div *ngIf="contactoForm.get('mensaje')!.errors?.['required']">
+          El Mensaje es obligatorio.
+        </div>
+        <div *ngIf="contactoForm.get('mensaje')?.errors?.['invalidMensaje']">
+          El Mensaje no debe contener símbolos especiales como /, "&#64;", #, $, %, etc.
+        </div>
+      </div>
+    </div>
+
+    <!-- Aceptación de respuesta -->
+    <div>
+      <label>
+      <input type="checkbox" formControlName="aviso" />
+        Acepto recibir respuesta.
+      </label>
+    </div>
+
+    <!-- Botón de envío -->
+    <button type="submit" class="btn btn-primary" [disabled]="contactoForm.invalid">Enviar Mensaje</button>
   </div>
-  <button type="submit" (click)="enviar()" class="btn btn-primary">Enviar Mensaje</button>
 </form>
 
+<!-- Mensaje de éxito -->
+<div *ngIf="consultaEnviada" class="mensaje-exito">
+  ¡Tu consulta fue enviada con éxito!
+</div>
 
