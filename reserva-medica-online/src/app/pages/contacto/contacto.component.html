@@ -2,6 +2,7 @@
 <form [formGroup]="contactoForm" (ngSubmit)="enviar()" class="form-container">
   <div id="contacto" class="row align-items-center singin-container">
 
+    <!-- Nombre -->
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre:</label>
       <input type="text" class="form-control" id="nombre" formControlName="nombre">
@@ -15,6 +16,7 @@
       </div>
     </div>
 
+    <!-- Apellido -->
     <div class="mb-3">
       <label for="apellido" class="form-label">Apellido:</label>
       <input type="text" class="form-control" id="apellido" formControlName="apellido">
@@ -28,6 +30,7 @@
       </div>
     </div>
 
+    <!-- Correo Electrónico -->
     <div class="mb-3">
       <label for="email" class="form-label">Tu Correo Electrónico:</label>
       <input type="email" class="form-control" id="email" formControlName="email">
@@ -41,6 +44,7 @@
       </div>
     </div>
 
+    <!-- Tipo de Consulta -->
     <div class="mb-3">
       <label for="tipoConsulta" class="form-label">Tipo de Consulta:</label>
       <select class="form-control" id="tipoConsulta" formControlName="tipoConsulta">
@@ -55,6 +59,7 @@
       </div>
     </div>
 
+    <!-- Mensaje -->
     <div class="mb-3">
       <label for="mensaje" class="form-label">Mensaje:</label>
       <textarea class="form-control" id="mensaje" formControlName="mensaje" rows="8"></textarea>
@@ -68,6 +73,7 @@
       </div>
     </div>
 
+    <!-- Aceptación de respuesta -->
     <div>
       <label>
       <input type="checkbox" formControlName="aviso" />
@@ -75,12 +81,13 @@
       </label>
     </div>
 
+    <!-- Botón de envío -->
     <button type="submit" class="btn btn-primary" [disabled]="contactoForm.invalid">Enviar Mensaje</button>
   </div>
 </form>
 
+<!-- Mensaje de éxito -->
 <div *ngIf="consultaEnviada" class="mensaje-exito">
   ¡Tu consulta fue enviada con éxito!
 </div>
-
 

@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ContactoService {
-  private apiUrl = "http://reservasmedicas.ddns.net/api/v1/";
+  private apiUrl = "https://reservasmedicas.ddns.net/api/v1/"; // 🔒 Usa HTTPS
+
   constructor(private http: HttpClient) {}
 
   enviarConsulta(datos: any): Observable<any> {
-  return this.http.post<any>(`${this.apiUrl}contacto/`, datos);
-}
-
+    return this.http.post<any>(`${this.apiUrl}contacto/`, datos);
+  }
 }

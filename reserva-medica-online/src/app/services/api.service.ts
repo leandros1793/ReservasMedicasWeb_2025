@@ -9,20 +9,20 @@ import { TurnosComponent } from "../pages/turnos/turnos.component";
 export class ApiService {
     //private apiUrl = 'http://192.168.0.170:8000';
     //  private apiUrl = 'http://localhost:8000/';
-     private apiUrl = 'http://127.0.0.1:8000';
+     //private apiUrl = 'http://127.0.0.1:8000';
     // private apiUrl = 'http://mgalarmasserver1.ddns.net:8000/';
-     //private apiUrl = 'http://casaiot.ddns.net:8000/';
+     private apiUrl = 'https://reservasmedicas.ddns.net/';
 
     constructor(private http: HttpClient ) { }
 
     register(user: any):
         Observable<any> {
-        return this.http.post<any>(this.apiUrl + '/register/', user);
+        return this.http.post<any>(this.apiUrl + 'register/', user);
     }
 
     login(dni: string, password: string): Observable<any> {
         const body = { username: dni, password: password };
-        return this.http.post<any>(this.apiUrl + '/login/', body).pipe(
+        return this.http.post<any>(this.apiUrl + 'login/', body).pipe(
         );
     }
 
@@ -75,6 +75,7 @@ export class ApiService {
 
 
     profile(): void {
+      let id_cliente = localStorage.getItem('id')
       let dni_cliente = localStorage.getItem('dni');
       let token_cliente = localStorage.getItem('token');
       let body2 = { username: dni_cliente, token: token_cliente };
@@ -96,14 +97,16 @@ export class ApiService {
     }
 
     nuevo_turno(): void {
+      let id_cliente = localStorage.getItem('id_user_id')
       let dni_cliente = localStorage.getItem('dni');
       let token_cliente = localStorage.getItem('token');
       let body = localStorage.getItem('datos_turno');
       if (token_cliente) {
         let headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Token ${token_cliente}`});
-          this.http.post<any>(`${this.apiUrl}/nuevo_turno/`, body , { headers }).subscribe(
+          'Authorization': `Token ${token_cliente}`,
+          'id_user_id' : `id_user_id ${id_cliente}`});
+          this.http.post<any>(`${this.apiUrl}nuevo_turno/`, body , { headers }).subscribe(
 
             response => { 
             console.log(response);
@@ -120,17 +123,21 @@ export class ApiService {
 
     lista_turnos_usuario(username: string): Observable<any> {
       const token_cliente = localStorage.getItem('token');
+      const id_cliente = localStorage.getItem('id_user_id')
       if (token_cliente) {
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',
           'Authorization': `Token ${token_cliente}`
         });
-        return this.http.get<any>(`${this.apiUrl}/lista_turnos_usuario/?username=${username}`, { headers });
+        return this.http.get<any>(`${this.apiUrl}lista_turnos_usuario/${id_cliente}/`, { headers });
       } else {
         console.error('Token no encontrado en localStorage');
         return new Observable(); // Retornar observable vacío en caso de error
       }
+      console.log(this.lista_turnos_usuario)
     }
+  
+  
 
 
 
