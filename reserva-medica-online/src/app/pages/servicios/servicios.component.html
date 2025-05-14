@@ -4,7 +4,12 @@
       <div class="row">
         <div *ngFor="let especialidad of especialidadesList; trackBy: trackById" class="col-md-3">
           <div class="card custom-card mb-3">
-            <!-- <img [src]="especialidad.img"> -->
+            <img 
+              class="card-img-top"
+              [src]="'assets/img/' + especialidad.especialidad.toLowerCase() + '.jpg'" 
+              [alt]="especialidad.especialidad"
+            />
+
             <div class="card-body">
               <h5 class="card-title">{{ especialidad.especialidad }}</h5>
               <p class="card-text">{{ especialidad.descripcion }}</p>
