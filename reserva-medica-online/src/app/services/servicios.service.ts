@@ -7,7 +7,7 @@ import { Especialidad } from '../interfaces/especialidad';
   providedIn: 'root'
 })
 export class ServiciosService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1/especialidad/';
+  private apiUrl = 'https://reservasmedicas.ddns.net/api/v1/especialidad/';
 
   constructor(private http: HttpClient) { }
 
