@@ -15,7 +15,7 @@ import { HeaderComponent } from '../../shared/header/header.component';
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule],
     templateUrl: './iniciar-sesion.component.html',
   styleUrl: './iniciar-sesion.component.css'
 })
