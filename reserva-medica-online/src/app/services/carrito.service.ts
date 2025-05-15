@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environment/environment'; // ajustá la ruta según tu proyecto
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +10,7 @@ export class CarritoService {
 
   private turnos: any[] = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     const data = localStorage.getItem('carritoTurnos');
     if (data) {
       this.turnos = JSON.parse(data);
@@ -37,5 +40,12 @@ export class CarritoService {
 
   private guardarEnLocalStorage() {
     localStorage.setItem('carritoTurnos', JSON.stringify(this.turnos));
+  }
+
+  crearSesionPago(turnoData: any): Observable<{ url: string }> {
+    // Usamos la URL del backend del environment
+    const urlBackend = `${environment.serverURL}/create-checkout-session`;
+
+    return this.http.post<{ url: string }>(urlBackend, turnoData);
   }
 }

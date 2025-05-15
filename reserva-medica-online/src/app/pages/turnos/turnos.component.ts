@@ -9,6 +9,7 @@ import { Profesional } from '../../interfaces/profesional';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-turnos',
@@ -23,7 +24,7 @@ export class TurnosComponent implements OnInit {
   turnoForm: FormGroup;
   constructor(private router: Router, 
               private turnosService: TurnosService, 
-              private pasarelaDePago: PasarelaPagoService,
+              private carritoService: CarritoService,
               private apiService:ApiService,
               private fb: FormBuilder) {
                 this.turnoForm = this.fb.group({
@@ -234,7 +235,31 @@ onSubmit(): void {
     { id: 2, title:"Dermatologo",profesional:"Sebastian verne" ,obra_social:"Saraza",fecha: '16-05-2023', price: 7600,  },
   ]
   // ESTO DEBERIA ESTAR COMO UN BOTON "PAGAR" EN EL CARRITO LLEVANDO OBVIAMENTE LOS DATOS DEL CARRITO
-  onProceedToPay(){
-    this.pasarelaDePago.onProceedToPay(this.pagos);
-  }
+onProceedToPay() {
+  const especialidadId = this.turnoForm.get('especialidad')?.value;
+  const profesionalNombre = this.turnoForm.get('profesional')?.value; // Este anda
+
+  const fecha_turno = this.turnoForm.get('fecha_turno')?.value;
+  const hora_turno = this.turnoForm.get('hora_turno')?.value;
+
+  // Buscar nombre de la especialidad
+  const especialidadObj = this.especialidadesList.find(e => e.id === +especialidadId);
+  const especialidadNombre = especialidadObj ? especialidadObj.especialidad : 'Especialidad Desconocida';
+
+  const turno = {
+    especialidad: especialidadNombre,
+    profesional: profesionalNombre, // No lo buscamos, lo tomamos del form
+    fecha_turno,
+    hora_turno,
+    precio: 7600
+  };
+
+  this.carritoService.agregarTurno(turno);
+  this.router.navigate(['/carrito']);
+}
+
+
+
+
+
 }
