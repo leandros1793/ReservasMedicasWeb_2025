@@ -46,6 +46,8 @@ export class IniciarSesionComponent{
           //paciente
           //-------------------------------------------------------------------
           localStorage.setItem('token', response.token);
+          localStorage.setItem('id_user_id', response.user.id.toString());
+          
           localStorage.setItem('dni', response.user.username);
           localStorage.setItem('nombre', response.user.first_name);
           localStorage.setItem('apellido', response.user.last_name);

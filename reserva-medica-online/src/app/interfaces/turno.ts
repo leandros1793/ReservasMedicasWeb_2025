@@ -8,8 +8,10 @@
 // }
 
 export interface Turno {
-    especialidad: string;
-    profesional_id: string;
+    id: number;
+    id_user_id: string;
+    nombre_especialidad: string;
+    nombre_profesional: string;
     fecha_turno: string; // Asegúrate de que estas propiedades existen en el JSON
     hora_turno: string;  // y que los nombres coinciden exactamente.
   }
