@@ -50,7 +50,12 @@ form {
   .form-row select {
     flex: 2;
   }
-  
+
+  form.form-container h2 {
+  margin-top: 30px; 
+  text-align: center;
+}
+
   @media only screen and (max-width: 600px) {
     section {
       padding: 0em;

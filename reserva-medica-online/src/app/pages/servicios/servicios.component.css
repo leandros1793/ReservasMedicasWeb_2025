@@ -1,364 +1,124 @@
-/* * {
-  padding: 0px 0px 0px 0px;
+/* Tipografía base (sin importar link externo) */
+body {
+  font-family: "Georgia", serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Reset general */
+* {
+  padding: 0;
   margin: 0;
   text-decoration: none;
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Fira Sans", sans-serif !important;
-  margin: 0;
-  padding: 0;
-  height: 100px;
-}  */
-
-/* .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-} */
-
-
-/* #servicios{
-    width: 90%;
-    height: 100%;
-    background-color: aqua;
-    margin: 0 auto;
-    box-sizing: border-box;
-  } */
-
-  /* .servicios_dinamicos{
-    width: 90%;
-    height: 400px;
-    background-color: aqua;
-    margin-left: 55px;
-    border: 1px solid #000;
-} */
-
-/* .servicios_dinamicos {
-  width: 90%;  
-  height: auto;  
-  background-color: aqua;
-  margin-left: 50px; 
-  align-items: center;
-  /* justify-content:space-around; */
-  /* overflow: auto; 
-  padding: 10px; 
-} */
-
-  /* background-color: blueviolet; */
-  /* width: 95%;
+/* Contenedor de servicios */
+.servicios_dinamicos {
+  width: 90%;
   height: auto;
-  min-height: 500px;
-  display: flex;
-  flex-wrap: wrap;          
-  justify-content: space-evenly;
-  align-items: center;       
-
-
-
-  /* display: flexbox;
-  margin-left: 30%;
-  overflow: hidden;
+  margin-left: 50px;
   align-items: center;
-  justify-content:space-around;
-  margin: auto;
-  
-}  */
-/* .titulo_servicios{
-    text-align: center;
-    padding-bottom: 40px;
-    color: #000000c5;
-    text-transform: uppercase;
-    margin-top: 10px;
+  overflow: auto;
+  padding: 10px;
+}
 
-  }
-  .servicio-container-superior{
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-  }
+/* Estilo general de la tarjeta */
+.card {
+  height: 100%;
+  padding: 10px;
+}
 
-  .container-info {
-    width: 360px;
-    height: auto;
-    box-shadow: 0 0 10px 5px #2323a738;
-    padding:5px 15px;
-    box-sizing: border-box;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .card-inferior{
-    width: 370px;
-  }
+/* Contenedor interno de la tarjeta */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid #000;
+  padding: 30px;
+  height: 100%;
+}
 
-  .container-info img {
-    height: 180px;
-    border-radius: 9px;
-    margin-left: 30px;
-    align-self: flex-start;
-  }
+/* Imagen en la tarjeta */
+.card img {
+  max-height: 200px;
+  object-fit: cover;
+}
 
-  .container-info1 img{
-    border-radius:75px;
-    height: 140px;
-    width: 140px;
-    margin: 0;
-    margin-bottom: 30px;
-    padding-bottom: 8px;
-    background-color: #00B6E7;
-  }
+/* Título de la tarjeta */
+.card .card-title {
+  font-family: 'Merriweather', serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #0f69c9;
+  margin-bottom: 12px;
+}
 
-  .container-info1 img,
-  .container-info img{
-    animation: aparecer 0.8s forwards;
-  }
+/* Descripción */
+.card .card-text {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
 
-  @keyframes aparecer {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-  }
+/* Precio */
+.card .precio {
+  font-size: 1.2rem;
+  color: #007bff;
+  font-weight: bold;
+}
 
-  .container-info h3 {
-    margin-top: 10px;
-    color:#0e3c86e6;
-    font-size: 18px;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  .container-info p {
-    font-size: 15px;
-    font-weight: 600;
-    color:rgb(79, 75, 75);
-    width: calc(100% - 10px);
-    margin: 0 auto;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 10px;
+/* Botón dentro de tarjeta */
+.card .btn {
+  align-self: flex-start;
+}
 
-  }
-  .container-info p > .asterisco{
-    color:#151635;
-    font-size: 18px;
-  }
-  .container-consulta{
-    color:#0E3D86;
-    font-size: 30px;
-    font-weight: 800;
-    text-align: center;
-    margin: 80px 0;
-  }
-  .container-consulta a{
-    text-decoration: none;
-  }
-  .button{
-    color:#dcd5d5;
-    background-color:#0E3D86 ;
-    padding: 10px 10px;
-    border-radius: 5px;
-  }
-  .button:hover{
-    color:#0E3D86 ;
-    background-color:#dcd5d5;
-    padding: 10px 10px;
-    border-radius: 5px;
-  }
+/* Botón base */
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.20rem 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 
-  .card .btn {
-    width: 100%;
-  }
+/* Botón personalizado */
+.add-to-cart-btn {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
 
-  .carousel-container {
-    width: 100%;
-    height: 150px;
-    padding-top: 40px;
+.add-to-cart-btn:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
 
-    overflow: hidden;
-  }
+.bordered-btn {
+  border-width: 2px;
+}
 
-  .carousel {
-    display: flex;
-    animation: scroll 15s linear infinite;
-  }
+.add-to-cart-btn:focus,
+.add-to-cart-btn:active {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
 
-  .carousel img {
-    width: 20%;
-    height: 100%;
-    border-radius: 8px;
-    margin-right: 5px;
-  }
+/* NUEVOS estilos para separar info y botón */
+.card-body .info-superior {
+  flex-grow: 1;
+}
 
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-1500px); }
-  }
-  .container-medio {
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
-  }
-  .card {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 5px #5959ec38;
-    cursor: pointer;
-  }
-
-  .card h3 {
-    margin-bottom: 10px;
-  }
-  .card img{
-    width: 35px;
-    padding-right: 5px;
-    cursor: pointer;
-  }
-  .card h3 .indicador{
-    margin-left: auto;
-  }
-
-  .lista-oculta {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-  .lista-oculta li {
-   color:#151635;
-   font-weight: 500;
-   margin-left: 80px;
-  }
-  .toggle {
-    display: none;
-  }
-
-  .toggle:checked + ul {
-    max-height: 700px;
-    transition: max-height 0.3s ease;
-  }
-  .obra-social img {
-    width: 60%;
-    height: 70%;
-  }
-
-  .defer{
-    text-align:center ;
-    font-size: 40px;
-    color: #808080;
-    text-shadow:
-      1px 1px 5px rgba(192,192,192,0.5),
-      2px 2px 10px rgba(192,192,192,0.5),
-      3px 3px 15px rgba(192,192,192,0.5);
-      margin:40px;
-  }
-  }
-  .obra-social img {
-    width: 60%;
-    height: 70%;
-  }  */
-  * {
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: "Fira Sans", sans-serif !important;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-  
-  .servicios_dinamicos {
-    width: 90%;
-    height: auto;
-    /* background-color: aqua; */
-    margin-left: 50px;
-    align-items: center;
-    overflow: auto;
-    padding: 10px;
-  }
-  
-  .card {
-    height: 100%;
-    padding: 10px;
-  }
-  
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 5px;
-    border: 1px solid #000;
-    padding: 30px;
-  }
-  
-  .card img {
-    max-height: 200px;
-    object-fit: cover;
-  }
-  
-  .card .card-title {
-    font-family:cursive;
-    font-size: 1.25rem;
-    font-weight: bold;
-    color:  #0f69c9;
-
-  }
-  
-  .card .card-text {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  
-  .card .precio {
-    font-size: 1.2rem;
-    color:#007bff;
-    font-weight: bold;
-  }
-  
-  .card .btn {
-    align-self: flex-start;
-  }
-  .btn {
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: 0.20rem 0.75rem; 
-    font-size: 0.9rem; 
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  
-  .add-to-cart-btn {
-    background-color: #007bff;
-    color: white;
-    border: 1px solid #007bff;
-  }
-  
-  .add-to-cart-btn:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-  }
-  
-  .bordered-btn {
-    border-width: 2px;
-  }
-  
-  .add-to-cart-btn:focus, .add-to-cart-btn:active {
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-  }
-  
+.card-body .acciones-inferiores {
+  margin-top: auto;
+}
