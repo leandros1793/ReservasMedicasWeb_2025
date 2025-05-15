@@ -100,7 +100,7 @@ export class ApiService {
     // api.service.ts
     nuevo_turno(turnoData: {
       id_user_id: number;
-      paciente_id: number;
+      
       profesional_id: any;
       hora_turno: any;
       fecha_turno: any;
@@ -117,10 +117,15 @@ export class ApiService {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Token ${token_cliente}`,
-        'id_user_id': `${id_cliente}`
+        
       });
 
       return this.http.post<any>(`${this.apiUrl}nuevo_turno/`, turnoData, { headers });
+    }
+
+
+    eliminarTurno(id: number): Observable<any> {
+      return this.http.delete(`https://reservasmedicas.ddns.net/eliminar_turno/${id}/`);
     }
 
 

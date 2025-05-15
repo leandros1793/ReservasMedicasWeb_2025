@@ -39,4 +39,24 @@ export class MisTurnosComponent implements OnInit {
         console.error('Username no encontrado en localStorage');
       }
     }
+
+    eliminarTurno(turnoId: number): void {
+      if (confirm('¿Estás seguro que querés eliminar este turno?')) {
+        this.apiService.eliminarTurno(turnoId).subscribe({
+          next: () => {
+            alert('Turno eliminado con éxito');
+            this.turnos = this.turnos.filter(t => t.id !== turnoId); // actualiza la lista
+          },
+          error: (error) => {
+            console.error('Error al eliminar el turno:', error);
+            alert('Hubo un error al eliminar el turno');
+          }
+        });
+      }
+      console.log()
+    }
+
+    
+
+
   }

@@ -8,6 +8,7 @@
 // }
 
 export interface Turno {
+    id: number;
     id_user_id: string;
     nombre_especialidad: string;
     nombre_profesional: string;

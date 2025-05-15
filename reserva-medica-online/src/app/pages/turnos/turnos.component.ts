@@ -43,7 +43,7 @@ export class TurnosComponent implements OnInit {
 onSubmit(): void {
   if (this.turnoForm.valid) {
     const id_user_id = Number(localStorage.getItem('id_user_id')); // Asegúrate de que lo tienes guardado
-    const paciente_id = Number(localStorage.getItem('paciente_id')); // También asegúrate de tener esto
+    const paciente_id = 2; // También asegúrate de tener esto
     const profesional_id = this.turnoForm.get('profesional')?.value;
     const fecha_turno = this.turnoForm.get('fecha_turno')?.value;
     const hora_turno = this.turnoForm.get('hora_turno')?.value;
@@ -74,7 +74,13 @@ onSubmit(): void {
       },
       error: (error) => {
         console.error('Error al agendar turno:', error);
+        if (error.error && typeof error.error === 'object') {
+          console.error('Mensaje de error del backend:', error.error.error); // <- Este es el texto que devuelve tu @api_view
+        } else {
+          console.error('Respuesta completa del servidor:', error.error);
+        }
       }
+
     });
 
 
