@@ -17,6 +17,18 @@ import { ApiService } from '../../services/api.service';
 
 export class ServiciosComponent implements OnInit {
   especialidadesList: Especialidad[] = [];
+  imagenesEspecialidades: { [clave: string]: string } = {
+  'Cardiología': 'assets/img/cardiologia.jpg',
+  'Traumatología': 'assets/img/traumatologia.jpg',
+  'Dermatología': 'assets/img/dermatologia.jpg',
+  'Pediatría': 'assets/img/pediatria.jpg',
+  'Psicología': 'assets/img/psicologia.jpg',
+  'Oncología': 'assets/img/oncologia.jpg',
+  'Psiquiatría': 'assets/img/psiquiatria.jpg',
+  'Ginecología': 'assets/img/ginecologia.jpg',
+  'Gastroentereologia': 'assets/img/gastroentereologia.jpg'
+};
+
 
   constructor(private serviciosService: ServiciosService, private router: Router, private apiService: ApiService,) { }
 

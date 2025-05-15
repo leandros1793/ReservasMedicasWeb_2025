@@ -51,5 +51,5 @@ export class TurnosService {
     const url = `https://reservasmedicas.ddns.net/api/v1/profesionales/?especialidad=${especialidadId}`;
     return this.http.get<any[]>(url);
   }
-  
+
 }

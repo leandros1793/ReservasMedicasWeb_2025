@@ -1,18 +1,28 @@
 <div class="dashboard">
-  <nav class="sidebar">
-    <ul>
-      <li><a routerLink="/dashboard/usuario/perfil" routerLinkActive="active"><span class="material-symbols-outlined perfil">account_circle</span> Perfil</a></li>
-      <li><a routerLink="/dashboard/mis-turnos" routerLinkActive="active"><span class="material-symbols-outlined">assignment_turned_in</span> Mis Turnos</a></li>
-      <li><a routerLink="/dashboard/pagos" routerLinkActive="active"><span class="material-symbols-outlined">monetization_on
-          </span>Historial de Pagos</a></li>
-      <!-- <li><a routerLink="/dashboard/historial" routerLinkActive="active"><span class="material-symbols-outlined">
-          description</span>Historial de Pagos</a></li> -->
-      <!-- <li><a routerLink="/inicio" routerLinkActive="active" >Salir</a></li> -->
-    </ul>
-  </nav>
 
-  <div class="main-content">
-    <router-outlet></router-outlet>
+  <!-- Menú lateral -->
+  <div class="sidebar">
+    <ul>
+      <li><a routerLink="/dashboard" routerLinkActive="active">Inicio</a></li>
+      <li><a routerLink="/dashboard/mis-turnos" routerLinkActive="active">Mis Turnos</a></li>
+      <li><a routerLink="/dashboard/usuario/perfil" routerLinkActive="active">Mis Datos</a></li>
+      <li><a routerLink="/dashboard/pagos" routerLinkActive="active">Historial de Pagos</a></li>
+    </ul>
   </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+
+    <!-- Saludo visible solo en /dashboard -->
+    <div *ngIf="mostrarSaludo" class="saludo-box">
+  <h1>👋{{ saludo }}</h1>
 </div>
 
+
+    <!-- Carga de componentes hijos -->
+    <div class="contenido">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

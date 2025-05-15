@@ -1,50 +1,69 @@
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../services/api.service";
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NavComponent } from '../../shared/nav/nav.component';
-import { HeaderComponent } from '../../shared/header/header.component';  
-
 
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule],
-    templateUrl: './iniciar-sesion.component.html',
-  styleUrl: './iniciar-sesion.component.css'
-})
+imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive, FormsModule],
+templateUrl: './iniciar-sesion.component.html',
+styleUrls: ['./iniciar-sesion.component.css']
 
-export class IniciarSesionComponent{
+})
+export class IniciarSesionComponent implements OnInit {
   loginForm: FormGroup;
+  userLoginOn: boolean = false;
+
   constructor(
-    private fb: FormBuilder, private apiService: ApiService, private router: Router) {
-      this.loginForm = this.fb.group({
-        dni:['',[Validators.required, Validators.pattern(/^[\d]{1,3}\.?[0-9]{3,3}\.?[\d]{3,3}$/)], []],
-        password:['',[Validators.required, Validators.pattern(/^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡/#$%&@])\S{8,20}$/)], []]
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      dni: ['', [Validators.required, Validators.pattern(/^[\d]{1,3}\.?[0-9]{3,3}\.?[\d]{3,3}$/)]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡/#$%&@])\S{8,20}$/)]]
     });
   }
 
   ngOnInit(): void {}
-  userLoginOn: boolean = false; // Iniciar sesión por defecto
-  onSubmit(event:Event): void {
-    event.preventDefault;
+
+  onSubmit(event: Event): void {
+    event.preventDefault();
+
     if (this.loginForm.valid) {
       const { dni, password } = this.loginForm.value;
+
+      // 💻 LOGIN HARDCODEADO PARA PRUEBAS
+      if (dni === '20736819' && password === 'Prueba123*') {
+        console.warn('LOGIN HARDCODEADO ACTIVADO ✅');
+
+        localStorage.setItem('token', 'fake-token-123456');
+        localStorage.setItem('id_user_id', '999');
+        localStorage.setItem('dni', dni);
+        localStorage.setItem('nombre', 'Matias');
+        localStorage.setItem('apellido', 'Sorrentino');
+        localStorage.setItem('email', 'matias@fake.com');
+
+        const inputUsuario = document.getElementById('input_usuario') as HTMLInputElement;
+        if (inputUsuario) {
+          inputUsuario.value = `Bienvenido : Matias Sorrentino`;
+          inputUsuario.style.display = 'flex';
+        }
+
+        this.loginForm.reset();
+        this.router.navigate(['/servicios']);
+        return;
+      }
+
+      // 🔁 LOGIN REAL DESDE LA API
       this.apiService.login(dni, password).subscribe(
         response => {
-          // console.log('Login exitoso', response);
-          // console.log(response.user.username);
-          // console.log(response.token);
-          //-------------------------------------------------------------------
-          //aca grabamos en el cache del navegador el token y el dni del
-          //paciente
-          //-------------------------------------------------------------------
           localStorage.setItem('token', response.token);
           localStorage.setItem('id_user_id', response.user.id.toString());
           
@@ -52,142 +71,31 @@ export class IniciarSesionComponent{
           localStorage.setItem('nombre', response.user.first_name);
           localStorage.setItem('apellido', response.user.last_name);
           localStorage.setItem('email', response.user.email);
-          
-          //-------------------------------------------------------------------
-          //a modo de verificacion en las 4 lineas siguientes leemos lo que esta
-          //grabado en el cache del navegador y lo publicamos por consola
-          //-------------------------------------------------------------------
-          let dni_cliente = localStorage.getItem('dni');
-          console.log('El dni del paciente es : ' + dni_cliente);
-          let token_cliente = localStorage.getItem('token');
-          console.log('El token del paciente es : ' +token_cliente);
-          let nombre_cliente = localStorage.getItem('nombre');
-          console.log('El nombre del paciente es : ' +nombre_cliente);
-          let apellido_cliente = localStorage.getItem('apellido');
-          console.log('El nombre del paciente es : ' +apellido_cliente);          
-          let email_cliente = localStorage.getItem('email');
-          console.log('El nombre del paciente es : ' +email_cliente);
-          //-------------------------------------------------------------------
-          //aca cargamos el Nombre y el apellido del usuario con mensaje bienvenido
-          //-------------------------------------------------------------------
 
           const inputUsuario = document.getElementById('input_usuario') as HTMLInputElement;
           if (inputUsuario) {
             inputUsuario.value = `Bienvenido : ${response.user.first_name} ${response.user.last_name}`;
-              inputUsuario.style.display = 'flex';
-            }
-          
-          //-------------------------------------------------------------------
-          //luego reseteamos el formulario y vaos a la page servicios
-          //-------------------------------------------------------------------
-          this.loginForm.reset()
+            inputUsuario.style.display = 'flex';
+          }
+
+          this.loginForm.reset();
           this.router.navigate(['/servicios']);
-          //-------------------------------------------------------------------
         },
         error => {
           console.error('Error de login', error);
+          alert('DNI o contraseña incorrecta.');
         }
       );
-    }
-    else {
+    } else {
       this.loginForm.markAllAsTouched();
-    };
+    }
   }
 
-
-  
-  get Dni(){
+  get Dni() {
     return this.loginForm.get("dni");
   }
-  get Password(){
+
+  get Password() {
     return this.loginForm.get("password");
   }
 }
-
-
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
-// import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-// import { ApiService } from "../../services/api.service";
-// // import { RouterLink } from '@angular/router';
-// import { RouterLink, RouterLinkActive } from '@angular/router';
-// import { FormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-// import { NgModule } from '@angular/core';
-// import { ReactiveFormsModule } from '@angular/forms';
-// import { NavComponent } from '../../shared/nav/nav.component';
-
-
-
-// @Component({
-//   // selector: 'app-login',
-//   selector: 'app-iniciar-sesion',
-//   standalone: true,
-//   // imports: [RouterLink, FormsModule],
-//   imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive, FormsModule],
-
-//   templateUrl: './iniciar-sesion.component.html',
-//   styleUrl: './iniciar-sesion.component.css'
-// })
-
-// export class IniciarSesionComponent{
-//   loginForm: FormGroup;
-
-//   constructor(
-//     private fb: FormBuilder, private apiService: ApiService, private router: Router) {
-//       this.loginForm = this.fb.group({
-//         // dni: ['', Validators.required, []],
-//         // password: ['', Validators.required, []]
-
-//         dni:['',[Validators.required, Validators.pattern(/^[\d]{1,3}\.?[0-9]{3,3}\.?[\d]{3,3}$/)], []],
-//         password:['',[Validators.required, Validators.pattern(/^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡/#$%&])\S{8,20}$/)], []]
-//     });
-//   }
-
-//   ngOnInit(): void {}
-
-//   userLoginOn: boolean = false; // Iniciar sesión por defecto
-//   onSubmit(event:Event): void {
-//     event.preventDefault;
-//     if (this.loginForm.valid) {
-//       const { dni, password } = this.loginForm.value;
-//       this.apiService.login(dni, password).subscribe(
-//         response => {
-//           console.log('Login exitoso', response);
-//           //this.toggleLoginStatus();
-//           //console.log(this.userLoginOn);
-//           this.loginForm.reset()
-//           this.router.navigate(['/servicios']);
-//         },
-//         error => {
-//           console.error('Error de login', error);
-//         }
-//       );
-//     }
-//     else {
-//       this.loginForm.markAllAsTouched();
-//     };
-//   }
-
-//   // showLoginElements() {
-//   //   this.loginElement.nativeElement.style.display = 'flex';
-//   //   this.logoutElement.nativeElement.style.display = 'none';
-//   // }
-
-//   // hideLoginElements() {
-//   //   this.loginElement.nativeElement.style.display = 'none';
-//   //   this.logoutElement.nativeElement.style.display = 'flex';
-//   // }
-
-//   get Dni(){
-//     return this.loginForm.get("dni");
-//   }
-
-//   get Password(){
-//     return this.loginForm.get("password");
-//   }
-
-//   toggleLoginStatus() {
-//     this.userLoginOn = true; // Cambiar el estado de inicio de sesión
-//   }
-// }
