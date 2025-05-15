@@ -1,16 +1,41 @@
 .container {
   padding: 2em;
+  line-height: 1.6;
+  margin-top: 15px;
 }
-a{
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    padding:10px 8px;
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 2rem; 
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 2rem; 
+  margin-top: 3rem;
+}
+
+.container p {
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.boton-volver-container {
+  text-align: center;
+  margin-top: 2rem; /* Opcional: separación con el contenido anterior */
+}
+a.boton-volver {
+  display: inline-block; /* Necesario para que `margin-top` funcione bien */
+  margin-top: 2rem;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 15px 15px;
   text-decoration: none;
 }
-a:hover{
-  background-color: #005dc0;
 
+a.boton-volver:hover {
+  background-color: #005dc0;
 }
