@@ -11,8 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive, FormsModule],
-  templateUrl: './iniciar-sesion.component.html',
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule],
+    templateUrl: './iniciar-sesion.component.html',
   styleUrl: './iniciar-sesion.component.css'
 })
 export class IniciarSesionComponent implements OnInit {
@@ -65,6 +65,7 @@ export class IniciarSesionComponent implements OnInit {
         response => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('id_user_id', response.user.id.toString());
+          
           localStorage.setItem('dni', response.user.username);
           localStorage.setItem('nombre', response.user.first_name);
           localStorage.setItem('apellido', response.user.last_name);

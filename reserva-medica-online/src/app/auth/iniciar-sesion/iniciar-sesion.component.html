@@ -1,3 +1,8 @@
+<head>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</head>
+
 <div class="logo_login">
   <img id="calendar" src="assets/img/time-and-calendar.png" alt="">
 </div>
@@ -6,20 +11,20 @@
 
   <form (ngSubmit)="onSubmit($event)" [formGroup]="loginForm">
     <div class="form-group">
-      <label for="dni">DNI:</label>
+      <label for="dni">Usuario:</label>
       <input formControlName="dni" type="text" id="dni" name="dni" class="form-control"
         placeholder="Ingrese documento de identidad">
       @if (Dni?.errors && Dni?.touched) {
       @if (Dni?.hasError('required'))
       {
       <p class="text-danger">
-        El DNI es requerido.
+        El Usuario es requerido.
       </p>
       }
       @else if (Dni?.hasError('dni'))
       {
       <p class="text-danger">
-        El formato del DNI debe ser válido.
+        El formato del Usuario debe ser válido.
       </p>
       }
       }
@@ -46,11 +51,15 @@
       }
     </div>
 
+
+
+   
+
     <button type="submit" class="btn-login">Iniciar Sesión</button>
 
     <div class="mt-3">
-      <p>¿No tenés cuenta?</p>
-      <button type="button" id="datos_personales_boton" class="btn-login" routerLink='/registro'>Regístrate</button>
+      <p>¿Aún no tenés cuenta?</p>
+      <a type="button" id="datos_personales_boton" class="btn-login2" routerLink='/registro'>Registrar Usuario</a>
     </div>
 
   </form>

@@ -96,30 +96,41 @@ export class ApiService {
       }
     }
 
-    nuevo_turno(): void {
-      let id_cliente = localStorage.getItem('id_user_id')
-      let dni_cliente = localStorage.getItem('dni');
-      let token_cliente = localStorage.getItem('token');
-      let body = localStorage.getItem('datos_turno');
-      if (token_cliente) {
-        let headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${token_cliente}`,
-          'id_user_id' : `id_user_id ${id_cliente}`});
-          this.http.post<any>(`${this.apiUrl}nuevo_turno/`, body , { headers }).subscribe(
+    
+    // api.service.ts
+    nuevo_turno(turnoData: {
+      id_user_id: number;
+      
+      profesional_id: any;
+      hora_turno: any;
+      fecha_turno: any;
+      especialidad_id: any;
+    }): Observable<any> {
+      const token_cliente = localStorage.getItem('token');
+      const id_cliente = localStorage.getItem('id_user_id');
 
-            response => { 
-            console.log(response);
-            alert('Turno agendado con exito');
-            },
-          error => {
-            console.error('Error en el logout', error);
-          }
-        );
-      } else {
+      if (!token_cliente) {
         console.error('Token no encontrado en localStorage');
+        return throwError(() => new Error('Token no encontrado'));
       }
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token_cliente}`,
+        
+      });
+
+      return this.http.post<any>(`${this.apiUrl}nuevo_turno/`, turnoData, { headers });
     }
+
+
+    eliminarTurno(id: number): Observable<any> {
+      return this.http.delete(`https://reservasmedicas.ddns.net/eliminar_turno/${id}/`);
+    }
+
+
+
+    
 
     lista_turnos_usuario(username: string): Observable<any> {
       const token_cliente = localStorage.getItem('token');
