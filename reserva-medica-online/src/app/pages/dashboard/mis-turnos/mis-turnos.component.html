@@ -40,14 +40,18 @@
           <th>Profesional</th>
           <th>Fecha</th>
           <th>Hora</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let turno of turnos">
-          <td>{{ turno.especialidad }}</td>
-          <td>{{ turno.profesional_id }}</td>
+          <td>{{ turno.nombre_especialidad }}</td>
+          <td>{{ turno.nombre_profesional }}</td>
           <td>{{ turno.fecha_turno }}</td>
           <td>{{ turno.hora_turno }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminarTurno(turno.id)">Eliminar</button>
+          </td>
         </tr>
       </tbody>
     </table>

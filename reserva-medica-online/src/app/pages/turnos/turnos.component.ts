@@ -40,36 +40,58 @@ export class TurnosComponent implements OnInit {
     this.getProfesionales();
   }
 
-  onSubmit(): void {
-    if (this.turnoForm.valid) {
-      let dni_cliente = localStorage.getItem('dni');
-      const fecha_turno = this.turnoForm.get('fecha_turno')?.value;
-      const hora_turno = this.turnoForm.get('hora_turno')?.value;
-      const profesional_id = this.turnoForm.get('profesional')?.value;
-      const especialidad_turno = this.turnoForm.get('especialidad')?.value;
-      if (fecha_turno && hora_turno && profesional_id !== null) {
-        const turnoData = {
-          username: dni_cliente,
-          fecha_turno: fecha_turno,
-          hora_turno: hora_turno,
-          estado_turno_id: '1',
-          profesional_id: profesional_id,
-          especialidad: especialidad_turno
-        };
-        // console.log('Datos del turno:', turnoData);
-        localStorage.setItem('datos_turno', JSON.stringify(turnoData));
-        // let datos = localStorage.getItem('datos_turno');
-        // console.log('los datos: ' + datos);
-        this.apiService.nuevo_turno();
-        this.onProceedToPay();
-        // this.router.navigate(['/dashboard/mis-turnos']);
-      } else {
-        console.error('Error: Uno de los campos del formulario es null o undefined.');
+onSubmit(): void {
+  if (this.turnoForm.valid) {
+    const id_user_id = Number(localStorage.getItem('id_user_id')); // Asegúrate de que lo tienes guardado
+    const paciente_id = 2; // También asegúrate de tener esto
+    const profesional_id = this.turnoForm.get('profesional')?.value;
+    const fecha_turno = this.turnoForm.get('fecha_turno')?.value;
+    const hora_turno = this.turnoForm.get('hora_turno')?.value;
+    const especialidad_id = this.turnoForm.get('especialidad')?.value; // Asegúrate que es un ID
+
+    console.log({ id_user_id, paciente_id, profesional_id, fecha_turno, hora_turno, especialidad_id });
+
+    console.log('Form values:', this.turnoForm.value);
+
+
+    if (id_user_id !== null && id_user_id !== undefined &&
+        paciente_id !== null && paciente_id !== undefined &&
+        profesional_id && fecha_turno && hora_turno && especialidad_id) {
+      const turnoData = {
+        id_user_id: id_user_id,
+        paciente_id: paciente_id,
+        profesional_id: profesional_id,
+        hora_turno: hora_turno,
+        fecha_turno: fecha_turno,
+        especialidad_id: especialidad_id
+      };
+
+      this.apiService.nuevo_turno(turnoData).subscribe({
+      next: (response) => {
+        console.log('Turno agendado con éxito:', response);
+        alert('Turno agendado con éxito');
+        this.onProceedToPay(); // o redirección
+      },
+      error: (error) => {
+        console.error('Error al agendar turno:', error);
+        if (error.error && typeof error.error === 'object') {
+          console.error('Mensaje de error del backend:', error.error.error); // <- Este es el texto que devuelve tu @api_view
+        } else {
+          console.error('Respuesta completa del servidor:', error.error);
+        }
       }
+
+    });
+
+
     } else {
-      this.turnoForm.markAllAsTouched();
+      console.error('Error: Algún campo es null o inválido.');
     }
+  } else {
+    this.turnoForm.markAllAsTouched();
   }
+}
+
 
   getEspecialidades(): void {
     this.turnosService.obtenerEspecialidades().subscribe((data: Especialidad[]) => {
@@ -81,7 +103,8 @@ export class TurnosComponent implements OnInit {
     const especialidadId = event.target.value;
     if (especialidadId) {
       this.turnosService.getProfesionalesPorEspecialidad(especialidadId).subscribe((data: any) => {
-        this.profesionalesList = data;
+        console.log('Respuesta del backend:', data);
+        this.profesionalesList = data || [];
       });
     } else {
       this.profesionalesList = []; 
