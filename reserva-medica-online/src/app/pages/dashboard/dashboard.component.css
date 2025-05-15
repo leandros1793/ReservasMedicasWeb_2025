@@ -1,51 +1,73 @@
 .dashboard {
-    display: flex;
-    height: auto; 
-  }
-    
-  .main-content {
-    width:90%;
-    height: auto;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center; 
-  }
-  
-  .sidebar {
-    width: 250px;
-    background-color: #f8f9fa;
-    padding: 20px;
-  }
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top:20px;
-  }
-  
-  .sidebar ul li {
-    margin: 30px 0;
-    padding-bottom:15px;
-    padding-top: 12px;
-    border-bottom: 1px solid rgb(218, 215, 215); 
-  }
-  
-  .sidebar ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 700;
-    padding: 10px 5px; 
-    width:100%;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .sidebar ul li:hover { background: #edf1f6bb;}
- 
-  
-  .sidebar ul li a.active {
-    color: #007bff;
-  }
-  .perfil{
-    align-items: center;
-  }
+  display: flex;
+  height: 100vh;
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background-color: #1f2937;
+  padding: 30px 20px;
+  color: #fff;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-weight: 500;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+/* Contenido principal */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* Saludo */
+.saludo-box {
+  background-color: #e0f2fe;
+  color: #000000;
+  padding: 20px 30px;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Sección de contenido */
+.contenido {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
