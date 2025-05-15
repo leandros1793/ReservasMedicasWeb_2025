@@ -1,4 +1,5 @@
 <div class="dashboard">
+<<<<<<< HEAD
   <nav class="sidebar">
     <ul>
       <li>
@@ -25,5 +26,35 @@
     </div>
 
     <router-outlet></router-outlet>
+=======
+
+  <!-- Menú lateral -->
+  <div class="sidebar">
+    <ul>
+      <li><a routerLink="/dashboard" routerLinkActive="active">Inicio</a></li>
+      <li><a routerLink="/dashboard/mis-turnos" routerLinkActive="active">Mis Turnos</a></li>
+      <li><a routerLink="/dashboard/usuario/perfil" routerLinkActive="active">Mis Datos</a></li>
+      <li><a routerLink="/dashboard/pagos" routerLinkActive="active">Historial de Pagos</a></li>
+    </ul>
+>>>>>>> 109325c7aa096e557e18120db00d04a5b1158c7d
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+
+    <!-- Saludo visible solo en /dashboard -->
+    <div *ngIf="mostrarSaludo" class="saludo-box">
+  <h1>👋{{ saludo }}</h1>
+</div>
+<<<<<<< HEAD
+=======
+
+
+    <!-- Carga de componentes hijos -->
+    <div class="contenido">
+      <router-outlet></router-outlet>
+    </div>
+
   </div>
 </div>
+>>>>>>> 109325c7aa096e557e18120db00d04a5b1158c7d

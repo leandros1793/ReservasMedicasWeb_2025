@@ -7,7 +7,7 @@ import { filter } from 'rxjs/operators';
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+  styleUrls: ['./dashboard.component.css'],
   imports: [RouterOutlet, RouterLink, RouterLinkActive, NgIf]
 })
 export class DashboardComponent implements OnInit {
