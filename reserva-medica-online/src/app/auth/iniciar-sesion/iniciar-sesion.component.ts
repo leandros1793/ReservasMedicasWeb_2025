@@ -11,16 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-iniciar-sesion',
   standalone: true,
-<<<<<<< HEAD
 imports: [ReactiveFormsModule, CommonModule, RouterLink, RouterLinkActive, FormsModule],
 templateUrl: './iniciar-sesion.component.html',
 styleUrls: ['./iniciar-sesion.component.css']
 
-=======
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, FormsModule],
-    templateUrl: './iniciar-sesion.component.html',
-  styleUrl: './iniciar-sesion.component.css'
->>>>>>> 74721ffe43f91f28b3bba3838505e84fd3808823
 })
 export class IniciarSesionComponent implements OnInit {
   loginForm: FormGroup;
