@@ -1,4 +1,32 @@
 <div class="dashboard">
+<<<<<<< HEAD
+  <nav class="sidebar">
+    <ul>
+      <li>
+        <a routerLink="/dashboard/usuario/perfil" routerLinkActive="active">
+          <span class="material-symbols-outlined perfil">account_circle</span>&nbsp;Perfil
+        </a>
+      </li>
+      <li>
+        <a routerLink="/dashboard/mis-turnos" routerLinkActive="active">
+          <span class="material-symbols-outlined">assignment_turned_in</span>&nbsp;Mis Turnos
+        </a>
+      </li>
+      <li>
+        <a routerLink="/dashboard/pagos" routerLinkActive="active">
+          <span class="material-symbols-outlined">monetization_on</span>&nbsp;Historial de Pagos
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="main-content">
+    <div *ngIf="mostrarSaludo" class="saludo-container">
+      <h2 class="saludo-text">{{ saludo }}</h2>
+    </div>
+
+    <router-outlet></router-outlet>
+=======
 
   <!-- Menú lateral -->
   <div class="sidebar">
@@ -8,6 +36,7 @@
       <li><a routerLink="/dashboard/usuario/perfil" routerLinkActive="active">Mis Datos</a></li>
       <li><a routerLink="/dashboard/pagos" routerLinkActive="active">Historial de Pagos</a></li>
     </ul>
+>>>>>>> 109325c7aa096e557e18120db00d04a5b1158c7d
   </div>
 
   <!-- Contenido principal -->
@@ -17,6 +46,8 @@
     <div *ngIf="mostrarSaludo" class="saludo-box">
   <h1>👋{{ saludo }}</h1>
 </div>
+<<<<<<< HEAD
+=======
 
 
     <!-- Carga de componentes hijos -->
@@ -26,3 +57,4 @@
 
   </div>
 </div>
+>>>>>>> 109325c7aa096e557e18120db00d04a5b1158c7d
