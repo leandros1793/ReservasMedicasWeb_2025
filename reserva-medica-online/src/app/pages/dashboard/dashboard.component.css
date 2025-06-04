@@ -1,73 +1,122 @@
 .dashboard {
   display: flex;
   height: 100vh;
-  background-color: #f5f7fa;
-  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Sidebar */
+/* NAV HEADER */
+nav {
+  background-color: #1b1c3a !important;
+}
+
+/* SIDEBAR */
 .sidebar {
-  width: 240px;
-  background-color: #1f2937;
-  padding: 30px 20px;
-  color: #fff;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar h2 {
-  font-size: 1.3rem;
-  margin-bottom: 30px;
+  width: 220px;
+  background-color: #1b1c3a;
+  padding: 20px;
+  color: #ecf0f1;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
-.sidebar ul li {
+.sidebar li {
   margin-bottom: 20px;
 }
 
-.sidebar ul li a {
+.sidebar a {
+  color: #ecf0f1;
   text-decoration: none;
-  color: #cbd5e1;
-  font-weight: 500;
-  display: block;
+  font-size: 16px;
   padding: 10px 15px;
-  border-radius: 6px;
-  transition: 0.3s;
+  display: block;
+  border-radius: 8px;
 }
 
-.sidebar ul li a:hover,
-.sidebar ul li a.active {
-  background-color: #3b82f6;
-  color: #fff;
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #3498db;
 }
 
-/* Contenido principal */
+/* CONTENIDO PRINCIPAL */
 .main-content {
   flex-grow: 1;
-  padding: 40px;
-  overflow-y: auto;
-}
-
-/* Saludo */
-.saludo-box {
-  background-color: #e0f2fe;
-  color: #000000;
-  padding: 20px 30px;
-  border-radius: 8px;
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-/* Sección de contenido */
-.contenido {
-  background-color: #ffffff;
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  background-color: #f4f6f8;
 }
+
+/* SALUDO */
+.saludo-box {
+  background-color: #e8f4ff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.saludo-box h1 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+/* NOTIFICADOR */
+.notificador-turnos {
+  background-color: #e9fff4;
+  border-left: 5px solid #2ecc71;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.notificador-turnos h3 {
+  margin-top: 0;
+  color: #27ae60;
+}
+
+.notificador-turnos ul {
+  padding-left: 20px;
+}
+
+.notificador-turnos li {
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+/* CONTENIDO HIJO */
+.contenido {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.03);
+}
+
+/* TABLA DE PAGOS Y TURNOS */
+.table thead th {
+  background-color: #97a1db;
+  color: #000000;
+}
+/* Cabecera unificada para ambas tablas */
+.table thead th {
+  background-color: #4278b4 !important; /* igual que pagos realizados */
+  color: #ffffff !important;
+}
+
+/* Mejora de link activo en menú lateral */
+.sidebar a.active {
+  background-color: transparent !important; /* elimina el fondo feo */
+  font-weight: bold;
+  border-left: 4px solid #3498db; /* sutil indicador */
+  color: #ffffff;
+}
+/* Hover en el menú lateral - solo resaltar texto */
+.sidebar a:hover {
+  background-color: transparent !important; /* sin fondo azul */
+  color: #ffffff; /* letra más clara */
+  font-weight: bold; /* negrita al pasar el mouse */
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* sutil brillo */
+}
+
+
