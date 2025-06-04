@@ -26,7 +26,7 @@
           <a *ngIf="apiService.isLoggedIn()" class="nav-link" routerLink="/dashboard" routerLinkActive="active">Mis Datos</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="apiService.isLoggedIn()" class="nav-link" routerLink="/carrito" routerLinkActive="active">Pago de turnos</a>
+          <a *ngIf="apiService.isLoggedIn()" class="nav-link" routerLink="/carrito" routerLinkActive="active">Finalizar Reserva</a>
         </li>
         <li  class="nav-item" id="logout">
           <a *ngIf="!apiService.isLoggedIn()" class="nav-link" routerLink="/iniciarSesion" routerLinkActive="active">Iniciar Sesion</a>

@@ -1,6 +1,6 @@
 <main class="carrito-container">
   <section id="carrito">
-    <h2>Carrito de Turnos</h2>
+    <h2>Confirmación de Turnos</h2>
 
     <div *ngIf="turnosConDetalles && turnosConDetalles.length > 0; else emptyCart">
       <ul class="carrito-lista">
@@ -13,9 +13,11 @@
           <button class="botones_turnos" (click)="eliminarTurno(i)">Eliminar</button>
         </li>
       </ul>
-      <button class="botones_turnos" (click)="limpiarCarrito()">Vaciar carrito</button>
-      <!-- Aquí agregás el botón para ir a pagar -->
-      <button class="botones_turnos" (click)="irAPagar()">Ir a pagar</button>
+      <button class="botones_turnos vaciar" (click)="limpiarCarrito()">
+  🗑 Vaciar carrito
+</button>
+<button class="botones_turnos pagar" (click)="irAPagar()">Ir a pagar</button>
+
     </div>
 
     <ng-template #emptyCart>

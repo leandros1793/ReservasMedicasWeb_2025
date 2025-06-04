@@ -1,43 +1,137 @@
 .carrito-container {
-  padding: 2rem;
-  text-align: center;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
-.carrito-vacio {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #666;
-  margin: 2rem 0;
+#carrito h2 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #222;
 }
 
 .carrito-lista {
   list-style: none;
   padding: 0;
-  margin: 2rem 0;
+  margin: 0 0 2rem 0;
 }
 
 .carrito-item {
-  border: 1px solid #ccc;
+  background: #f9f9f9;
   border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background-color: #f9f9f9;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
 }
 
-/* Ya lo tenés, pero lo repito para claridad */
+.carrito-item:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+.carrito-item p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+}
+
+.carrito-item strong {
+  color: #0077cc;
+}
+
 .botones_turnos {
-  width: 80%;
-  max-width: 300px;
-  height: 33px;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #0077cc;
+  color: white;
   border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.4rem;
+  font-size: 1rem;
   cursor: pointer;
-  margin: 0.5rem auto;
-  display: block;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+  display: inline-block;
 }
 
 .botones_turnos:hover {
-  background-color: #0056b3;
+  background-color: #005fa3;
+}
+
+/* Botón para eliminar dentro de la tarjeta, un poco más pequeño */
+.carrito-item .botones_turnos {
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  background-color: #cc3300;
+  margin-top: 1rem;
+}
+
+.carrito-item .botones_turnos:hover {
+  background-color: #a02a00;
+}
+
+/* Botón para vaciar y pagar centrados y separados */
+#carrito > button.botones_turnos {
+  width: 48%;
+  margin-right: 4%;
+}
+
+#carrito > button.botones_turnos:last-child {
+  margin-right: 0;
+}
+
+/* Cuando el carrito está vacío */
+.carrito-vacio {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #777;
+}
+
+/* Nuevo estilo para Vaciar carrito: botón outline rojo con ícono */
+.botones_turnos.vaciar {
+  background: #0077cc;
+  border: 2px solid ;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1.3rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: 43%;
+  margin-right: 4%;
+  cursor: pointer;
+}
+
+.botones_turnos.vaciar:hover {
+  background-color: #cc3300;
+  color: white;
+}
+
+/* Ajustamos el botón 'Ir a pagar' para que quede al lado */
+.botones_turnos.pagar {
+  width: 43%;
+  margin-right: 0;
+}
+
+
+
+
+/* Responsive para móvil */
+@media (max-width: 480px) {
+  .carrito-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  #carrito > button.botones_turnos {
+    width: 100%;
+    margin: 0 0 1rem 0;
+  }
 }
