@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: reservas-medicas-backend
+    env: python
+    repo: https://github.com/leandros1793/ReservasMedicasWeb_2025/tree/main/BackEnd/abm_ispc
+    branch: master
+    buildCommand: ""
+    startCommand: gunicorn reservas_medicas.wsgi:application
+    workingDir: BackEnd
+    autoDeploy: true
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: reservas_medicas.settings
+      - key: SECRET_KEY
+        value: django-insecure-oo0idm%r))&%51rf_fj%yo6fa28=p%(su4#@%j6k5_l&c#vc5u
+      - key: ALLOWED_HOSTS
+        value: "*"
