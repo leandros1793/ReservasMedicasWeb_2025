@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Especialidad
+from .models import Contacto, Especialidad
 from .models import Estadoturno
 from .models import Obra_Social
 from .models import Profesional
@@ -13,3 +13,4 @@ admin.site.register(Obra_Social)
 admin.site.register(Profesional)
 admin.site.register(Paciente)
 admin.site.register(Turnos)
+admin.site.register(Contacto)

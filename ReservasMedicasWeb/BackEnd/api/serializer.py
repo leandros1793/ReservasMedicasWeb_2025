@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-from .models import Especialidad
+from .models import Contacto, Especialidad
 from .models import Estadoturno
 from .models import Obra_Social
 from .models import Profesional
@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
 class EspecialidadSerializer(serializers.ModelSerializer):
     class Meta:
         model=Especialidad
-        fields='__all__'#Para que tome todos los campos
+        fields=['id', 'especialidad', 'descripcion', 'existe']
 # #2
 class EstadoturnoSerializer(serializers.ModelSerializer):
      class Meta:
@@ -37,7 +37,7 @@ class ObraSocialSerializer(serializers.ModelSerializer):
 class ProfesionalSerializer(serializers.ModelSerializer):
     class Meta:
         model= Profesional
-        fields='__all__'        
+        fields=['id', 'nombre', 'apellido', 'especialidad']       
 #5
 class PacienteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,6 +45,28 @@ class PacienteSerializer(serializers.ModelSerializer):
         fields='__all__'#Para que tome todos los campos  
 # #6
 class TurnosSerializer(serializers.ModelSerializer):
+    nombre_profesional = serializers.SerializerMethodField()
+    nombre_especialidad = serializers.CharField(source='especialidad.especialidad', read_only=True)
+
     class Meta:
         model = Turnos
-        fields='__all__'#Para que tome todos los campos     
+        fields = [
+            'id',
+            'id_user_id',
+            'paciente',
+            'profesional',  # ID del profesional
+            'nombre_profesional',  # Nombre completo
+            'especialidad',  # ID de especialidad
+            'nombre_especialidad',  # Nombre de especialidad
+            'hora_turno',
+            'fecha_turno'
+        ]
+
+    def get_nombre_profesional(self, obj):
+        return f"{obj.profesional.nombre} {obj.profesional.apellido}"
+
+#7
+class ContactoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contacto      
+        fields = '__all__'  

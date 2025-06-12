@@ -21,5 +21,12 @@ urlpatterns = [
     re_path('eliminar_usuario/', views.eliminar_usuario),
     re_path('logout/', views.logout),
     path('nuevo_turno/', views.nuevo_turno, name='nuevo_turno'),
-    path('lista_turnos_usuario/', views.lista_turnos_usuario, name='lista_turnos_usuario'),
-]
+    path('lista_turnos_usuario/<int:id_user_id>/', views.lista_turnos_usuario),
+    path('especialidad/<int:especialidad_id>/', views.actualizar_especialidad),
+    path('eliminarespecialidad/<int:especialidad_id>/', views.eliminar_especialidad),
+    path('eliminarprofesional/<int:profesional_id>/', views.eliminar_profesional),
+    path('eliminar_turno/<int:id>/', views.eliminar_turno),
+   
+    path('especialidad/existe/<str:especialidad>', views.verificar_especialidad, name='especialidad-existe'),
+    path('profesional/<int:profesional_id>/', views.actualizar_profesional),
+]   

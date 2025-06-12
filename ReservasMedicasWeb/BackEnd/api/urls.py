@@ -19,7 +19,10 @@ router.register('profesionales', views.ProfesionalViewSet)
 #5
 router.register('paciente', views.PacienteViewSet)
 #6
-router.register('turnos_todos', views.TurnosViewSet)
+router.register('turnos', views.TurnosViewSet)
+
+#7
+router.register('contacto', views.ContactoViewSet)
 
 
 # urlpatterns = [

@@ -1,21 +1,5 @@
 # Api Rest con Django
 
-## Superuser
-
-- Nombre:reservamedica
-- mail: moniantich@gmail.com
-- clave: 123456
-
-## Base de datos  
-
-* URL: ispcserver1.ddns.net  
-* Usuario: desarrollo_web_2024  
-* Password: web_2024  
-* Puerto: 3306
-
-La información para la conexión a la base de datos se encuentra en la siguiente ubicacion:  
-BackEnd --> abm_ispc --> settings.py  
-
 ## Integrantes del Grupo
 
 - Patricia Castillo
@@ -29,7 +13,8 @@ BackEnd --> abm_ispc --> settings.py
 ![alt text](img/pdf_01.png)
 ![alt text](img/pdf_02.png)
 ![alt text](img/pdf_03.png)
-![alt text](img/pdf_04.png)
+Cambiamos la informacion de DATEBASE.  
+Seguimos con la creacion de las clases...
 ![alt text](img/pdf_05.png)
 ![alt text](img/pdf_06.png)
 ![alt text](img/pdf_07.png)
