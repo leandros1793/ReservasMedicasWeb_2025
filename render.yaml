@@ -4,7 +4,7 @@ services:
     env: python
     repo: https://github.com/leandros1793/ReservasMedicasWeb_2025
     branch: master
-    workingDir: BackEnd
+    workingDirectory: BackEnd
     buildCommand: ""
     startCommand: gunicorn abm_ispc.wsgi:application
     autoDeploy: true
