@@ -1,0 +1,68 @@
+.logo_login{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+div.row {
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+#calendar {
+    width: 10rem;
+    margin: 2rem;
+    margin: auto;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px; /* Espaciado interno */
+    background-color: white; /* Fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: center; /* Centra el texto */
+}
+
+/* Estilo para los encabezados */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo para los campos de entrada */
+input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+
+.btn-login{
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.btn_login:hover{
+    background-color: #0056b3;
+}
+
+.btn-login2{
+    text-decoration: none;
+}
+
+
+.IngreseSuInfo {
+    font-size: 1.18rem;
+}

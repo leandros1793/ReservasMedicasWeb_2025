@@ -1,0 +1,28 @@
+<main class="carrito-container">
+  <section id="carrito">
+    <h2>Confirmación de Turnos</h2>
+
+    <div *ngIf="turnosConDetalles && turnosConDetalles.length > 0; else emptyCart">
+      <ul class="carrito-lista">
+        <li *ngFor="let turno of turnosConDetalles; let i = index" class="carrito-item">
+          <p><strong>Especialidad:</strong> {{ turno.especialidad }}</p>
+          <p><strong>Profesional:</strong> {{ turno.profesionalNombre }}</p>
+          <p><strong>Fecha:</strong> {{ turno.fecha_turno }}</p>
+          <p><strong>Hora:</strong> {{ turno.hora_turno }}</p>
+          <p><strong>Precio:</strong> ${{ turno.precio }}</p>
+          <button class="botones_turnos" (click)="eliminarTurno(i)">Eliminar</button>
+        </li>
+      </ul>
+      <button class="botones_turnos vaciar" (click)="limpiarCarrito()">
+  🗑 Vaciar carrito
+</button>
+<button class="botones_turnos pagar" (click)="irAPagar()">Ir a pagar</button>
+
+    </div>
+
+    <ng-template #emptyCart>
+      <p class="carrito-vacio">El carrito está vacío.</p>
+      <button class="botones_turnos" (click)="irATurnos()">Agregar nuevo turno</button>
+    </ng-template>
+  </section>
+</main>

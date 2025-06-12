@@ -1,0 +1,41 @@
+<div class="dashboard">
+  <!-- Menú lateral -->
+  <div class="sidebar">
+    <ul>
+      <li><a routerLink="/dashboard" routerLinkActive="active">Inicio</a></li>
+      <li><a routerLink="/dashboard/mis-turnos" routerLinkActive="active">Mis Turnos</a></li>
+      <li><a routerLink="/dashboard/usuario/perfil" routerLinkActive="active">Mis Datos</a></li>
+      <li><a routerLink="/dashboard/pagos" routerLinkActive="active">Historial de Pagos</a></li>
+    </ul>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <!-- Saludo visible solo en /dashboard -->
+    <div *ngIf="mostrarSaludo" class="saludo-box">
+      <h1>👋 {{ saludo }}</h1>
+    </div>
+
+    <!-- Notificador de próximos turnos -->
+    <div *ngIf="mostrarSaludo && tieneTurnos" class="notificador-turnos">
+      <h3>🩺 ¡No olvides tus próximos turnos!</h3>
+      <p>Tenés estos turnos agendados. ¡Llega diez minutos antes y anunciate en la recepción! 🎯</p>
+      <ul>
+        <li *ngFor="let turno of turnosFuturos">
+          <strong>{{ turno.fecha_turno }}</strong> - {{ turno.hora_turno }} hs con {{ turno.nombre_profesional }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Si no hay turnos -->
+    <div *ngIf="mostrarSaludo && !tieneTurnos" class="notificador-turnos">
+      <h3>📬 No tenés turnos agendados</h3>
+      <p>Podés sacar uno nuevo desde la sección <strong>Turnos</strong>.</p>
+    </div>
+
+    <!-- Vista de componentes hijos -->
+    <div class="contenido">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
